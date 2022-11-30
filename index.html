@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<title>i was starting to get bored</title>
+		<style>
+			#quote-box {
+				background-color: black;
+				color: white;
+				width: 400px;
+				text-align: center;
+				height: 300px;
+			}
+			.wrapper {
+				background: black;
+				border-radius: 1em;
+				padding: 1em;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-right: -50%;
+				transform: translate(-50%, -50%) }
+			}
+		</style>
+		<script>
+			var quotes = [
+				{text:"For once, I say \"neat\".", author:"yellows111"},
+				{text:"what started as CSC2 has now become a new thing entirely.", author:"yellows111"},
+				{text:"Using objects in arrays is usually bad practice.", author:"Unknown"},
+				] // replace with a new source
+			function newName() {
+				let text = document.getElementById("text");
+				let author = document.getElementById("author");
+				let quote = quotes[Math.floor(Math.random() * quotes.length)]
+				author.innerText = quote.author
+				text.innerText = quote.text
+				let meta = encodeURIComponent(`${quote.text} - ${quote.author}`).replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`)
+				document.getElementById("tweet-quote").href = `https://twitter.com/intent/tweet?text=${meta}`
+			}
+		</script>
+		<script async src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+	</head>
+	<body onload="newName()">
+		<div class="wrapper">
+			<div id="quote-box">
+				<span id="text">text</span>
+				<br>
+				<i>-</i>
+				<span id="author">author</span>
+				<hr>
+				<button id="new-quote" onclick="newName()">new</button>
+				<hr>
+				<a id="tweet-quote" href="" target="_blank">tweet</a>
+			</div>
+		</div>
+	</body>
+</html>
